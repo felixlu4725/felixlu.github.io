@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Massively by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
@@ -30,3 +31,6 @@ Credits:
 		jQuery (jquery.com)
 		Scrollex (github.com/ajlkn/jquery.scrollex)
 		Responsive Tools (github.com/ajlkn/responsive-tools)
+=======
+This is the personal portfolio website for Felix Lu
+>>>>>>> 79cb80f47d372c98f00416e950d351d934c306a2
