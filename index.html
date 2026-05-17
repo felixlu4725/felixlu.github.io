@@ -1,339 +1,914 @@
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Felix Lu Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Felix Lu — Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Raleway:wght@700;800&family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+<style>
+  /* ───────── Tokens ───────── */
+  :root{
+    --black: #000;
+    --ink:   #0b0b0b;
+    --panel: #1d1d1d;
+    --panel-2:#1a1a1a;
+    --grey:  #d7d7d7;
+    --grey-2:#fafafa;
+    --muted: #8b8b8b;
+    --rule:  #aaaaaa;
+    --white: #ffffff;
+    --off-white:#fffbfb;
+    --bd: 8px;            /* heading rectangle border */
+    --sect-h: 107px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#fff;color:#0b0b0b;-webkit-font-smoothing:antialiased}
+  body{font-family:"Open Sans", system-ui, sans-serif; font-weight:400; line-height:1.4;}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+  /* ───────── Reusable bits ───────── */
+  .container{max-width:1200px;margin:0 auto;padding:0 32px}
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Hey There!<br />
-							I'm Felix</h1>
-						<p>and welcome to my website portfolio</p>
+  .h-rect{
+    display:inline-flex;align-items:center;justify-content:center;
+    border:var(--bd) solid #000;
+    padding:14px 56px;min-height:var(--sect-h);
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:30px;
+    letter-spacing:.355em;color:#000;
+    line-height:1;
+    text-transform:uppercase;
+  }
+  .h-rect.invert{border-color:#fff;color:#fff}
 
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+  .sep{
+    width:170px;height:12px;margin:0 auto;
+    background:url("assets/separator.png") center/contain no-repeat;
+    opacity:.85;
+  }
+  .sep.invert{filter:invert(1) brightness(2)}
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Welcome</a>
-					</header>
+  /* The classic line-cap "I——I" outlined button (32px tall caps) */
+  .btn-line{
+    position:relative;display:inline-flex;align-items:center;justify-content:center;
+    height:32px;padding:0 32px;min-width:139px;
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;letter-spacing:.06em;
+    text-transform:uppercase;color:#000;cursor:pointer;background:transparent;border:0;
+    transition:opacity .2s ease;
+  }
+  .btn-line::before,.btn-line::after{
+    content:"";position:absolute;top:0;bottom:0;width:2px;background:currentColor;
+  }
+  .btn-line::before{left:0}
+  .btn-line::after{right:0}
+  .btn-line:hover{opacity:.65}
+  .btn-line.invert{color:#fff}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Portfolio</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/felix-lu-71a597233/" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-							<li><a href="https://github.com/felixlu4725?tab=repositories" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+  .pill{
+    display:inline-flex;align-items:center;justify-content:center;
+    height:46px;padding:0 28px;border-radius:30px;background:#fff;color:#000;
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;
+    text-transform:uppercase;border:4px solid #fff;cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .pill:hover{background:transparent;color:#fff}
 
-				<!-- Main -->
-					<div id="main">
+  /* ───────── Top sticky nav (after scroll) ───────── */
+  .topnav{
+    position:fixed;top:0;left:0;right:0;height:66px;
+    background:#0b0b0b;display:flex;align-items:center;justify-content:flex-end;
+    padding:0 80px;gap:48px;z-index:50;
+    transform:translateY(-100%);transition:transform .35s ease;
+  }
+  .topnav.show{transform:translateY(0)}
+  .topnav a{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:14px;color:#fff;
+    letter-spacing:.06em;text-transform:capitalize;
+  }
+  .topnav a:hover{opacity:.7}
+  .topnav .pill{color:#000}
+  .topnav .pill:hover{background:transparent;color:#fff;border-color:#fff}
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								
-								<div class="featured-content">
-									<div class="image">
-										<img src="images/sase_headshot.jpeg" alt="Profile Image" />
-									</div>
-									<div class="text">
-										<h2>About Me</h2>
-										<p>
-                                            I completed my B.S.E. in Computer Engineering at the University of Michigan - Ann Arbor, where my undergraduate
-                                            experience focused on embedded systems, computer vision, and hardware-software integration. I've led and
-                                            contributed to projects involving sensor fusion, real-time data processing, and custom interfaces using
-                                            microcontrollers and FPGAs. Previously, I conducted research in human-computer interaction at
-                                            <a href="https://sixlab-eecs.com/" target="_blank">the Sensing, Intelligence and eXperience (SIX) Lab</a>
-                                            under Doctor <a href="https://www.junyizhu.com/" target="_blank">Junyi Zhu</a>. I am now an incoming
-                                            Master's student in Electrical and Computer Engineering at Carnegie Mellon University, where I plan to
-                                            concentrate my graduate studies in digital chip design.
-										</p>
-									</div>
-								</div>
-								<ul class="actions special">
-									<li><a href="https://www.linkedin.com/in/felix-lu-71a597233/" class="button large">Linkedin</a></li>
-									<li><a href="https://github.com/felixlu4725?tab=repositories" class="button large">GitHub</a></li>
-									<li><a href="assets/PDFs/Felix_Resume_embedded_421.pdf" class="button large" target="_blank" rel="noreferrer">Resume</a></li>
-								</ul>
-							</article>
+  /* ───────── Hero ───────── */
+  .hero{
+    position:relative;width:100%;min-height:100vh;
+    background:var(--grey);overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  /* The diagonal black wedge that the portrait sits on */
+  .hero-wedge{
+    position:absolute;inset:0 -8% 0 38%;
+    background:#000;
+    transform:skewX(-9.6deg);
+    transform-origin:top right;
+    z-index:1;
+  }
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-										<span class="date">TBD</span>
-										<h2><a href="#" onclick="return false;">Superscalar RISC CPU</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images\cpu_combined_cropped.png" alt="" /></a>
-									<p>A custom 2-wide superscalar RISC (LC2K ISA) processor implemented in SystemVerilog featuring limited out-of-order execution via a circular micro-op dispatch queue. Supports dynamic instruction cracking, full register forwarding, and dual-slot hazard detection. Timing closed at 10.6ns with critical paths registered at stage boundaries to eliminate combinational glitches.</p>
-									<ul class="actions special">
-										<li><a class="button" role="button" aria-disabled="true" onclick="return false;">Work in progress...</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">TBD</span>
-										<h2><a href="#" onclick="return false;">Cognitive Engagement Sensing for Remote Copresence</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images\CALLeeg.png" alt="" /></a>
-									<p>An close-ear EEG system that brings cognitive engagement awareness into video calls, enabling adaptive communication interfaces and supporting mutual awareness between remote users. Currently submitted for conference review.</p>
-									<ul class="actions special">
-										<li><a class="button" role="button" aria-disabled="true" onclick="return false;">Work in progress...</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">TBD</span>
-										<h2><a href="#" onclick="return false;">EIT gesture recognition</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images\eit.png" alt="" /></a>
-									<p>A wrist-worn electrical impedance tomography system that uses a four-electrode array to capture forearm muscle activity and classify micro-gestures in real time. The project spans custom firmware, synchronized data acquisition, signal preprocessing, and a machine-learning pipeline for reliable gesture recognition.</p>
-									<ul class="actions special">
-										<li><a class="button" role="button" aria-disabled="true" onclick="return false;">Work in progress...</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">TBD</span>
-										<h2><a href="#" onclick="return false;">Autonomous Drone</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images\drone_2.png" alt="" /></a>
-									<p>An autonomous drone built on a custom SpeedyBee F405–based flight stack with ArduPilot and a Raspberry Pi vision module. The system uses onboard computer vision for real-time perception and sends MAVLink control commands for fully autonomous navigation and gesture-based interaction.</p>
-									<ul class="actions special">
-										<li><a class="button" role="button" aria-disabled="true" onclick="return false;">Work in progress...</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">December, 2025</span>
-										<h2><a href="#" onclick="return false;">Carte Diem!</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/cart.jpg" alt="" /></a>
-									<p>Carte Diem is a add-on module that integrates smart features to regular carts. This device eliminates the need for checkout lines while maintaining anti-theft features. It’s modularity allows stores to easily implement this technology into the existing ecosystems.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/felixlu4725/Carte-Diem" class="button">GitHub</a>
-										<a href="https://youtu.be/uMk5K5QZvuk?si=cSmXB7p1vbv0kMNO" class="button">Demo Video</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">December, 2025</span>
-										<h2><a href="#" onclick="return false;">Incucyte-Incubator prototype</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images\Sartorious-Figure-1.png" alt="" /></a>
-									<p>Redesigning the market-leading <a href="https://www.sartorius.com/en/products/live-cell-imaging-analysis">Sartorius AG</a> Incucyte into a next-generation, miniaturized live-cell research platform. The project develops a custom embedded control system with precise thermal, humidity, and airflow regulation to enable reliable long-term cell imaging in a compact form factor, with technical details shared only within NDA constraints.</p>
-									<ul class="actions special">
-										<li><a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-25" class="button">Work Description</a>
-										<a href="https://www.sartorius.com/en/products/live-cell-imaging-analysis" class="button">Incucyte product</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">April, 2025</span>
-										<h2><a href="#" onclick="return false;">Any Surface Touch Screen</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/touchscreen.png" alt="" /></a>
-									<p>Turn any flat surface into an interactive touchscreen by combining LiDAR-based position tracking with vibration sensors that classify taps, drags, and other gestures in real time.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/felixlu4725/Any-Surface-Touchscreen" class="button">GitHub</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">May, 2024</span>
-										<h2><a href="#" onclick="return false;">Evaluator App</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/evaluator.png" alt="" /></a>
-									<p>Our computer vision research project developed in Python enhances real-time hand tracking and gesture classification using MediaPipe, YOLOv8, and DeepLabCut to support posture correction and performance analysis for musicians. Project Research paper accepted to HCII 2026 conference for publication.</p>
-									<ul class="actions special">
-										<li><a href="https://github.com/felixlu4725/Evaluator-code" class="button">GitHub</a></li>
-										<li><a href="https://arxiv.org/abs/2604.17530" class="button">Research Paper</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">January, 2024</span>
-										<h2><a href="#" onclick="return false;">Content Aware Image Resizer</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/image.png" alt="" /></a>
-									<p>An advanced content-aware, image resizing program utilizing seam carving algorithm in C++ that allows image to be scaled without losing/distorting meaningful image landmarks.</p>
-									<ul class="actions special">
-										<li><a href="https://gitfront.io/r/felixlu/Y1owJuhfAQKD/Content-Aware-Image-Resizer/" class="button">GitHub</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">November, 2023</span>
-										<h2><a href="#" onclick="return false;">Post Classifier using Machine Learning</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/post.png" alt="" /></a>
-									<p>This project is a natural language processor implemented in C++ for predictive classification using the naive bayes algorithm. The classifier has been tested on large .csv datasets and has demonstrated an accuracy of 87% with O(n) processing time.</p>
-									<ul class="actions special">
-										<li><a href="https://gitfront.io/r/felixlu/WbC7jqVWQgNN/Post-classifier-using-Machine-Learning/" class="button">GitHub</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">August, 2023</span>
-										<h2><a href="#" onclick="return false;">Office Hours Queue Web Server</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/queue.png" alt="" /></a>
-									<p>Built a RESTful web server and custom doubly linked list in C++ to manage an interactive office hours queue, focusing on dynamic memory, iterators, and real-time client-server communication.</p>
-									<ul class="actions special">
-										<li><a href="https://gitfront.io/r/felixlu/WjzkhPkvTbNq/web-queue-api/" class="button">GitHub</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<span class="date">TBD</span>
-										<h2><a href="#" onclick="return false;">More coming soon...</a></h2>
-									</header>
-									<a href="#" onclick="return false;" class="image fit"><img src="images/" alt="" /></a>
-								</article>
-							</section>
+  .hero-nav{
+    position:absolute;top:60px;right:80px;z-index:5;
+    display:flex;align-items:center;gap:44px;
+  }
+  .hero-nav a{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:14px;color:#fff;
+    letter-spacing:.06em;
+  }
+  .hero-nav a:hover{opacity:.6}
 
-							
-							<div class="flex-container">
-								<div class="flex-item">
-									<div class="skills-panel">
-										<section class="skills-card">
-											<h3>Engineering Toolkit</h3>
+  .hero-copy{
+    position:relative;z-index:3;
+    align-self:center;padding:0 40px 40px 80px;
+    max-width:560px;
+  }
+  .hero-greet{
+    font-family:"Raleway",sans-serif;font-weight:700;font-size:40px;color:#000;line-height:1;
+    margin:0 0 14px 0;
+  }
+  .hero-name{
+    font-family:"Raleway",sans-serif;font-weight:700;font-size:clamp(48px,6vw,72px);color:#000;line-height:1;
+    margin:0 0 20px 0;letter-spacing:-.01em;
+  }
+  .hero-role{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:20px;color:#000;
+    letter-spacing:.04em;margin:0 0 56px 0;
+  }
+  .hero-socials{display:flex;gap:18px}
+  .soc{
+    width:46px;height:46px;border-radius:50%;background:#000;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:transform .2s, background .2s;
+  }
+  .soc:hover{transform:translateY(-2px);background:#1d1d1d}
+  .soc svg{width:22px;height:22px;fill:currentColor}
 
-											<div class="skill-group">
-												<h4>Languages</h4>
-												<ul class="skill-chip-list">
-													<li>C/C++</li>
-													<li>Verilog</li>
-													<li>System Verilog</li>
-													<li>Python</li>
-													<li>MATLAB</li>
-													<li>Assembly</li>
-													<li>HTML/CSS</li>
-												</ul>
-											</div>
+  .hero-portrait{
+    position:relative;z-index:2;
+    display:flex;align-items:flex-end;justify-content:center;
+    padding:60px 80px 0 0;
+  }
+  .hero-portrait img{
+    width:min(100%,680px);height:auto;max-height:92vh;
+    object-fit:contain;object-position:center bottom;
+    filter:saturate(1.02) drop-shadow(0 20px 40px rgba(0,0,0,.35));
+  }
 
-											<div class="skill-group">
-												<h4>Tools</h4>
-												<ul class="skill-chip-list">
-													<li>Quartus</li>
-													<li>ModelSim</li>
-													<li>Conda</li>
-													<li>Cadence</li>
-													<li>FreeRTOS</li>
-													<li>JTAG/SWD</li>
-													<li>KiCAD</li>
-													<li>Altium</li>
-													<li>Embedded Linux</li>
-													<li>Logic Analyzers</li>
-													<li>Fusion360</li>
-													<li>Git</li>
-												</ul>
-											</div>
+  /* ───────── About + Focus areas ───────── */
+  .section{padding:120px 0;background:#fff;position:relative}
+  .section.tinted{background:radial-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.06) 100%), #fff}
+  .section-head{display:flex;flex-direction:column;align-items:center;gap:48px;text-align:center}
+  .section-head p{
+    max-width:760px;margin:0 auto;
+    font-family:"Open Sans",sans-serif;font-size:15px;line-height:1.55;color:#0b0b0b;text-align:center;
+  }
+  .focus-grid{
+    margin:72px auto 0;max-width:1100px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:48px 32px;
+  }
+  .focus{display:flex;gap:18px;align-items:flex-start;padding:8px}
+  .focus-ico{
+    width:64px;height:64px;flex:0 0 64px;
+    display:flex;align-items:center;justify-content:center;color:#000;
+  }
+  .focus-ico svg{width:100%;height:100%;stroke:#000;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .focus h3{
+    margin:0 0 12px 0;
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:22px;
+    letter-spacing:.185em;text-transform:uppercase;color:#000;
+  }
+  .focus p{
+    margin:0;font-family:"Open Sans",sans-serif;font-weight:300;font-size:14px;
+    line-height:1.55;color:#0b0b0b;text-align:justify;
+  }
 
-											<div class="skill-group">
-												<h4>Libraries</h4>
-												<ul class="skill-chip-list">
-													<li>NumPy</li>
-													<li>Pandas</li>
-													<li>TensorFlow</li>
-													<li>Keras</li>
-													<li>PyTorch</li>
-													<li>MediaPipe</li>
-													<li>YOLO</li>
-													<li>OpenCV</li>
-												</ul>
-											</div>
-										</section>
+  /* ───────── Skills grid ───────── */
+  .skills{
+    max-width:1000px;margin:64px auto 0;
+    display:flex;flex-direction:column;gap:48px;
+  }
+  .skill-group{display:flex;flex-direction:column;gap:24px}
+  .skill-group .label{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:15px;letter-spacing:.185em;
+    text-transform:uppercase;color:#000;
+  }
+  .skill-row{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:32px 32px;
+  }
+  .skill{
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+  }
+  .skill .tile{
+    width:100px;height:100px;border-radius:18px;
+    display:flex;align-items:center;justify-content:center;
+    background:#0b0b0b;color:#fff;position:relative;overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .skill:hover .tile{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+  .skill .tile svg{width:60%;height:60%}
+  .skill .tile img{
+    width:58%;height:58%;object-fit:contain;display:block;
+  }
+  .skill .tile .glyph{
+    font-family:"Montserrat",sans-serif;font-weight:700;color:#fff;
+    font-size:28px;letter-spacing:.02em;line-height:1;
+    display:flex;align-items:center;justify-content:center;text-align:center;padding:0 6px;
+  }
+  .skill .tile .glyph.sm{font-size:18px;letter-spacing:.08em}
+  .skill .tile .glyph.lg{font-size:34px}
+  .skill .tile.t-c       {background:#03599c}
+  .skill .tile.t-cpp     {background:#00599c}
+  .skill .tile.t-py      {background:#3776ab}
+  .skill .tile.t-vlog    {background:#1a1a1a}
+  .skill .tile.t-sv      {background:#0b0b0b}
+  .skill .tile.t-asm     {background:#5a5a5a}
+  .skill .tile.t-matlab  {background:#e76f00}
+  .skill .tile.t-html    {background:#e44d26}
+  .skill .tile.t-quartus {background:#a52d40}
+  .skill .tile.t-cadence {background:#bf2026}
+  .skill .tile.t-kicad   {background:#314cb0}
+  .skill .tile.t-modelsim{background:#222}
+  .skill .tile.t-altium  {background:#a3c530}
+  .skill .tile.t-fusion  {background:#f48000}
+  .skill .tile.t-git     {background:#f1502f}
+  .skill .tile.t-linux   {background:#fcc624;color:#0b0b0b}
+  .skill .tile.t-jtag    {background:#264653}
+  .skill .tile.t-logic   {background:#0b0b0b}
+  .skill .tile.t-conda   {background:#43b02a}
+  .skill .tile.t-rtos    {background:#003459}
+  .skill .tile.t-np      {background:#013243}
+  .skill .tile.t-pd      {background:#150458}
+  .skill .tile.t-tf      {background:#ff6f00}
+  .skill .tile.t-keras   {background:#d00000}
+  .skill .tile.t-torch   {background:#ee4c2c}
+  .skill .tile.t-mp      {background:#0097a7}
+  .skill .tile.t-yolo    {background:#00bfa5}
+  .skill .tile.t-cv      {background:#5c3ee8}
+  .skill .name{
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;
+    text-transform:uppercase;color:#000;text-align:center;
+  }
 
-										<header>
-											<h3>Education</h3>
-											<div class="education-list">
-												<div class="education-item">
-													<div class="image">
-														<img src="images/Michigan-Engineering Vertical-REV-BLUE-RGB.png" alt="Michigan Engineering" class="education-logo" />
-													</div>
-													<p>B.S.E Computer Engineering @ University of Michigan - Ann Arbor</p>
-												</div>
-												<div class="education-item">
-													<div class="image">
-														<img src="images/cmu-wordmark-square-w-on-r.png" alt="Carnegie Mellon University" class="education-logo" />
-													</div>
-													<p>M.S. Electrical &amp; Computer Engineering @ Carnegie Mellon University</p>
-												</div>
-											</div>
-										</header>
+  /* ───────── Portfolio (dark band) ───────── */
+  .portfolio{
+    background:#1a1a1a;color:#fff;
+  }
+  .portfolio-head{
+    position:relative;height:321px;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.35)),
+      url("images/portfolio-bg.png") center/cover no-repeat;
+  }
+  .portfolio-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:0;
+  }
+  .proj{
+    position:relative;aspect-ratio:4/3;overflow:hidden;
+    background:#0b0b0b;
+    color:#fff;cursor:pointer;
+  }
+  /* Ambient blurred backdrop pulled from each project's image */
+  .proj::before{
+    content:"";position:absolute;inset:-20px;
+    background-image:var(--bg);background-size:cover;background-position:center;
+    filter:blur(28px) brightness(.55) saturate(1.25);
+    transform:scale(1.15);
+    transition:transform .8s ease, filter .5s ease;
+    z-index:0;
+  }
+  /* Subtle radial darkening + thin inner frame */
+  .proj > .scrim{
+    position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(120% 100% at 50% 30%, rgba(0,0,0,0) 35%, rgba(0,0,0,.45) 100%);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+  }
+  .proj > .img{
+    position:absolute;inset:0;padding:28px;
+    background-origin:content-box;background-clip:content-box;
+    background-image:var(--bg);
+    background-size:contain;background-position:center;background-repeat:no-repeat;
+    transition:transform .6s ease, filter .4s ease;
+    filter:drop-shadow(0 14px 32px rgba(0,0,0,.55));
+    z-index:1;
+  }
+  .proj .veil{
+    position:absolute;inset:0;z-index:2;
+    background:rgba(0,0,0,.78);
+    opacity:0;transition:opacity .35s ease;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:24px;text-align:center;color:#fff;
+  }
+  .proj:hover .veil{opacity:1}
+  .proj:hover::before{transform:scale(1.22);filter:blur(34px) brightness(.4) saturate(1.3)}
+  .proj:hover > .img{transform:scale(1.03);filter:brightness(.85) drop-shadow(0 14px 32px rgba(0,0,0,.7))}
+  .proj .kicker{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-style:italic;
+    font-size:11px;letter-spacing:.12em;color:#fff;opacity:.85;margin:0 0 12px 0;
+    text-transform:lowercase;
+  }
+  .proj .title{
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:24px;letter-spacing:.18em;
+    margin:0 0 12px 0;text-transform:uppercase;
+  }
+  .proj .desc{
+    font-family:"Montserrat",sans-serif;font-weight:500;font-size:11px;letter-spacing:.02em;
+    line-height:1.6;color:#fff;opacity:.88;margin:0 0 22px 0;max-width:340px;
+  }
+  .proj .row{display:flex;gap:8px}
+  .proj-foot{
+    text-align:center;padding:56px 0 96px 0;
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:20px;letter-spacing:.04em;
+    color:#fffbfb;
+  }
 
-									</div>
-								</div>
-							</div>
+  /* Filter bar */
+  .filter{
+    display:flex;justify-content:center;gap:0;padding:48px 0 24px 0;
+  }
+  .filter ul{
+    display:flex;list-style:none;margin:0;padding:0;gap:0;
+    border-bottom:1px solid var(--rule);
+    width:min(620px,90%);
+  }
+  .filter li{flex:1;display:flex;align-items:center;justify-content:center;padding-bottom:14px;position:relative}
+  .filter li button{
+    background:none;border:0;color:#fff;cursor:pointer;
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:14px;letter-spacing:.185em;
+    text-transform:uppercase;padding:6px 12px;opacity:.7;transition:opacity .2s;
+  }
+  .filter li button:hover{opacity:1}
+  .filter li.active button{opacity:1}
+  .filter li.active::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#fff;
+  }
 
-						
-					</div>
+  /* ───────── Education ───────── */
+  .edu{
+    background:#fafafa;padding:96px 0 0 0;
+  }
+  .edu-strips{margin-top:72px;display:flex;flex-direction:column}
+  /* Strip */
+  .strip{
+    position:relative;color:#fff;overflow:hidden;
+    padding:80px 0 96px 0;
+  }
+  .strip-cmu  { background:#c41230 }
+  .strip-umich{ background:#00274C }
+  .strip .container{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:24px;max-width:1300px}
+  .strip h2{
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:30px;letter-spacing:.185em;
+    text-transform:uppercase;margin:0;color:#fff;
+  }
+  .strip .strip-meta{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-style:italic;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(255,255,255,.7);margin:0 0 -6px 0;
+  }
+  .strip p{
+    max-width:600px;
+    font-family:"Open Sans",sans-serif;font-size:15px;line-height:1.55;color:#fff;
+    margin:0;text-align:justify;
+  }
+  .strip p a{
+    color:#fff;text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,.55);
+    padding-bottom:1px;transition:border-color .2s, color .2s;
+    font-weight:600;
+  }
+  .strip p a:hover{border-bottom-color:#fff;color:#fff}
+  /* Decorative rings + wordmark watermark */
+  .strip-mark-wrap{
+    position:absolute;right:-40px;top:-60px;width:520px;height:520px;
+    transform:rotate(24deg);
+    z-index:1;pointer-events:none;
+  }
+  .strip-mark-wrap .ring{
+    position:absolute;border-radius:50%;border:2px solid rgba(0,0,0,.55);
+    z-index:2;
+  }
+  .strip-mark-wrap .ring.r1{inset:0;border-width:3px}
+  .strip-mark-wrap .ring.r2{inset:30px;border-width:2px}
+  .strip-mark-wrap .ring.r3{inset:70px;border-width:2px}
+  .strip-mark-wrap .mark-text{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  }
+  .strip-mark-wrap .mark-text img{
+    max-width:300px;max-height:300px;width:auto;height:auto;display:block;
+    transform:rotate(-24deg);
+    opacity:.55;
+    mix-blend-mode:lighten;
+    user-select:none;-webkit-user-drag:none;
+  }
 
-				
+  /* ───────── Contact ───────── */
+  .contact{
+    padding:120px 0;background:radial-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.06) 100%), #fff;
+  }
+  .contact-socials{
+    display:flex;justify-content:center;gap:32px;margin:56px auto 0;flex-wrap:wrap;
+  }
+  .contact-soc{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:18px 28px;border:3px solid #000;
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:14px;letter-spacing:.185em;
+    text-transform:uppercase;color:#000;background:#fff;
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .contact-soc svg{width:22px;height:22px;fill:currentColor}
+  .contact-soc:hover{background:#000;color:#fff;transform:translateY(-2px)}
+  .contact-email{
+    margin:32px auto 0;text-align:center;
+    font-family:"Open Sans",sans-serif;font-size:15px;color:#0b0b0b;
+  }
+  .contact-email a{
+    color:#0b0b0b;border-bottom:1px solid #0b0b0b;padding-bottom:2px;
+    transition:opacity .2s;
+  }
+  .contact-email a:hover{opacity:.6}
 
-				<!-- Footer -->
-					<footer id="footer">
-						
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>EECS Building, 1301 Beal Ave., Ann Arbor, MI 48109</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(734) 596-7985</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">felixlu@umich.edu</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://www.linkedin.com/in/felix-lu-71a597233/" class="icon brands alt fa-linkedin"><span class="label">linkedin</span></a></li>
-									<li><a href="https://github.com/felixlu4725?tab=repositories" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
+  /* ───────── Footer ───────── */
+  footer{
+    background:#1a1a1a;color:#fff;padding:80px 0 40px 0;
+    text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px;
+  }
+  footer .top{
+    display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:15px;letter-spacing:.185em;
+  }
+  footer .top svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+  footer .socials{display:flex;gap:20px}
+  footer .socials .soc{width:42px;height:42px;background:#fff;color:#000}
+  footer .socials .soc:hover{background:#d7d7d7}
+  footer .copyright{
+    font-family:"Nunito",sans-serif;font-weight:700;font-size:16px;color:#fff;
+  }
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-					</div>
+  /* ───────── Responsive ───────── */
+  @media (max-width: 980px){
+    .hero{grid-template-columns:1fr;min-height:auto}
+    .hero-wedge{inset:60% -20% 0 -20%;transform:skewY(-6deg);transform-origin:center}
+    .hero-portrait{padding:24px;justify-content:center}
+    .hero-portrait img{max-height:520px}
+    .hero-copy{padding:120px 32px 32px}
+    .hero-name{font-size:56px}
+    .hero-nav{right:32px;top:32px;gap:18px}
+    .hero-nav a{font-size:12px}
+    .focus-grid{grid-template-columns:1fr;gap:32px;max-width:520px}
+    .skill-row{grid-template-columns:repeat(3,1fr);gap:24px}
+    .portfolio-grid{grid-template-columns:1fr 1fr}
+    .strip-mark-wrap{right:-100px;top:-30px;width:380px;height:380px}
+    .strip-mark-wrap .mark-text img{width:220px;height:220px}
+    .h-rect{font-size:22px;padding:10px 32px;border-width:6px}
+    .topnav{padding:0 24px;gap:18px}
+    .topnav a{font-size:12px}
+  }
+  @media (max-width:560px){
+    .skill-row{grid-template-columns:repeat(2,1fr)}
+    .portfolio-grid{grid-template-columns:1fr}
+    .section{padding:80px 0}
+    .hero-greet{font-size:28px}.hero-name{font-size:40px}.hero-role{font-size:14px}
+    .strip-mark-wrap{display:none}
+  }
+</style>
+</head>
+<body>
 
-			</div>
+<!-- After-scroll fixed topbar -->
+<nav class="topnav" id="topnav" aria-label="Primary">
+  <a href="#about">About me</a>
+  <a href="#skills">Skills</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact" class="pill">Contact me</a>
+</nav>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+<!-- ─── Hero ─── -->
+<section class="hero">
+  <div class="hero-wedge" aria-hidden="true"></div>
 
-	</body>
+  <nav class="hero-nav" aria-label="Hero">
+    <a href="#about">About me</a>
+    <a href="#skills">Skills</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact" class="pill" style="background:#fff;color:#000;border-color:#fff">Contact me</a>
+  </nav>
 
+  <div class="hero-copy">
+    <p class="hero-greet">Hi, I am</p>
+    <h1 class="hero-name">Felix&nbsp;Lu</h1>
+    <p class="hero-role">Computer Engineer / Embedded&nbsp;Systems</p>
+    <div class="hero-socials">
+      <a class="soc" href="mailto:felixlu4725@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.4-.5 7.6 5.6L19.6 6H4.4Zm15.6 1.7-7.4 5.45a1 1 0 0 1-1.2 0L4 7.7v9.8c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.7Z"/></svg>
+      </a>
+      <a class="soc" href="https://github.com/felixlu4725?tab=repositories" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.55v-2.02c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.3-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.18-3.1-.12-.3-.51-1.49.11-3.1 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.61.24 2.8.11 3.1.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.18c0 .31.21.66.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <a class="soc" href="https://www.linkedin.com/in/felix-lu-71a597233/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.3 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.37 1.6-2.37 3.27V21h-4V9Z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-portrait">
+    <img src="images/Subject.png" alt="Felix Lu portrait" />
+  </div>
+</section>
+
+<!-- ─── About + Focus areas ─── -->
+<section class="section tinted" id="about">
+  <div class="section-head">
+    <span class="h-rect">About me</span>
+    <p>
+      I build at the seam between hardware and software — embedded systems, computer vision and digital
+      design. I like projects that need a soldering iron, a scope, and a debugger in the same afternoon.
+    </p>
+    <a class="btn-line" href="https://github.com/felixlu4725?tab=repositories" target="_blank" rel="noopener noreferrer">Explore</a>
+    <div class="sep" role="presentation"></div>
+  </div>
+
+  <div class="focus-grid container">
+    <div class="focus">
+      <div class="focus-ico">
+        <svg viewBox="0 0 64 64"><rect x="14" y="14" width="36" height="36" rx="3"/><rect x="22" y="22" width="20" height="20" rx="1"/><path d="M22 6v8M32 6v8M42 6v8M22 50v8M32 50v8M42 50v8M6 22h8M6 32h8M6 42h8M50 22h8M50 32h8M50 42h8"/></svg>
+      </div>
+      <div>
+        <h3>Embedded</h3>
+        <p>Firmware in C/C++ on STM32, ESP32 and SpeedyBee flight stacks. Real‑time data acquisition with FreeRTOS, sensor fusion, MAVLink, and custom JTAG/SWD bring‑up.</p>
+      </div>
+    </div>
+    <div class="focus">
+      <div class="focus-ico">
+        <svg viewBox="0 0 64 64"><path d="M4 44h8v-24h8v24h8v-12h8v12h8v-24h8v24h12"/><path d="M4 56h56" stroke-dasharray="2 4"/></svg>
+      </div>
+      <div>
+        <h3>Digital&nbsp;Design</h3>
+        <p>SystemVerilog from datapath to tape‑in: 2‑wide superscalar RISC pipelines, register‑forwarding, dispatch queues, timing closure and Quartus / ModelSim flows.</p>
+      </div>
+    </div>
+    <div class="focus">
+      <div class="focus-ico">
+        <svg viewBox="0 0 64 64"><path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32Z"/><circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="2" fill="#000"/></svg>
+      </div>
+      <div>
+        <h3>Vision&nbsp;&amp; HCI</h3>
+        <p>OpenCV, MediaPipe, YOLO and DeepLabCut pipelines for gesture tracking, posture correction and cognitive‑state sensing in human‑computer interaction research.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Skills ─── -->
+<section class="section" id="skills">
+  <div class="section-head">
+    <span class="h-rect">Skills</span>
+  </div>
+
+  <div class="skills">
+    <div class="skill-group">
+      <div class="label">Languages</div>
+      <div class="skill-row">
+        <div class="skill"><div class="tile t-c"><img src="https://cdn.simpleicons.org/c/ffffff" alt="" /></div><div class="name">C</div></div>
+        <div class="skill"><div class="tile t-cpp"><img src="https://cdn.simpleicons.org/cplusplus/ffffff" alt="" /></div><div class="name">C++</div></div>
+        <div class="skill"><div class="tile t-vlog"><div class="glyph sm">Verilog</div></div><div class="name">Verilog</div></div>
+        <div class="skill"><div class="tile t-sv"><div class="glyph sm">SV</div></div><div class="name">SystemVerilog</div></div>
+        <div class="skill"><div class="tile t-py"><img src="https://cdn.simpleicons.org/python/ffffff" alt="" /></div><div class="name">Python</div></div>
+        <div class="skill"><div class="tile t-matlab"><div class="glyph">M</div></div><div class="name">MATLAB</div></div>
+        <div class="skill"><div class="tile t-asm"><div class="glyph sm">ASM</div></div><div class="name">Assembly</div></div>
+        <div class="skill"><div class="tile t-html"><img src="https://cdn.simpleicons.org/html5/ffffff" alt="" /></div><div class="name">HTML / CSS</div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="label">Tools</div>
+      <div class="skill-row">
+        <div class="skill"><div class="tile t-quartus"><div class="glyph sm">Quartus</div></div><div class="name">Quartus</div></div>
+        <div class="skill"><div class="tile t-modelsim"><div class="glyph sm">M‑Sim</div></div><div class="name">ModelSim</div></div>
+        <div class="skill"><div class="tile t-cadence"><div class="glyph sm">Cadence</div></div><div class="name">Cadence</div></div>
+        <div class="skill"><div class="tile t-kicad"><img src="https://cdn.simpleicons.org/kicad/ffffff" alt="" /></div><div class="name">KiCAD</div></div>
+        <div class="skill"><div class="tile t-altium"><div class="glyph sm">Altium</div></div><div class="name">Altium</div></div>
+        <div class="skill"><div class="tile t-fusion"><img src="https://cdn.simpleicons.org/autodesk/ffffff" alt="" /></div><div class="name">Fusion 360</div></div>
+        <div class="skill"><div class="tile t-rtos"><div class="glyph sm">FreeRTOS</div></div><div class="name">FreeRTOS</div></div>
+        <div class="skill"><div class="tile t-linux"><img src="https://cdn.simpleicons.org/linux/0b0b0b" alt="" /></div><div class="name">Embedded Linux</div></div>
+        <div class="skill"><div class="tile t-jtag"><div class="glyph sm">JTAG</div></div><div class="name">JTAG / SWD</div></div>
+        <div class="skill"><div class="tile t-logic"><div class="glyph sm">Logic</div></div><div class="name">Logic Analyzers</div></div>
+        <div class="skill"><div class="tile t-conda"><img src="https://cdn.simpleicons.org/anaconda/ffffff" alt="" /></div><div class="name">Conda</div></div>
+        <div class="skill"><div class="tile t-git"><img src="https://cdn.simpleicons.org/git/ffffff" alt="" /></div><div class="name">Git</div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="label">Libraries</div>
+      <div class="skill-row">
+        <div class="skill"><div class="tile t-np"><img src="https://cdn.simpleicons.org/numpy/ffffff" alt="" /></div><div class="name">NumPy</div></div>
+        <div class="skill"><div class="tile t-pd"><img src="https://cdn.simpleicons.org/pandas/ffffff" alt="" /></div><div class="name">Pandas</div></div>
+        <div class="skill"><div class="tile t-tf"><img src="https://cdn.simpleicons.org/tensorflow/ffffff" alt="" /></div><div class="name">TensorFlow</div></div>
+        <div class="skill"><div class="tile t-keras"><img src="https://cdn.simpleicons.org/keras/ffffff" alt="" /></div><div class="name">Keras</div></div>
+        <div class="skill"><div class="tile t-torch"><img src="https://cdn.simpleicons.org/pytorch/ffffff" alt="" /></div><div class="name">PyTorch</div></div>
+        <div class="skill"><div class="tile t-mp"><img src="https://cdn.simpleicons.org/mediapipe/ffffff" alt="" /></div><div class="name">MediaPipe</div></div>
+        <div class="skill"><div class="tile t-yolo"><div class="glyph sm">YOLO</div></div><div class="name">YOLO</div></div>
+        <div class="skill"><div class="tile t-cv"><img src="https://cdn.simpleicons.org/opencv/ffffff" alt="" /></div><div class="name">OpenCV</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Portfolio ─── -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-head">
+    <span class="h-rect invert">Portfolio</span>
+  </div>
+
+  <div class="filter" role="tablist">
+    <ul>
+      <li class="active"><button data-filter="all">All</button></li>
+      <li><button data-filter="hw">Hardware</button></li>
+      <li><button data-filter="sw">Software</button></li>
+      <li><button data-filter="research">Research</button></li>
+    </ul>
+  </div>
+
+  <div class="portfolio-grid" id="portfolio-grid">
+    <!-- 1 -->
+    <article class="proj" data-tag="hw" style="--bg:url('images/cpu_combined_cropped.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">SystemVerilog, FPGA</p>
+        <h3 class="title">Superscalar&nbsp;RISC&nbsp;CPU</h3>
+        <p class="desc">2‑wide superscalar LC2K processor with circular micro‑op dispatch, full register forwarding, dual‑slot hazard detection. Closed at 10.6 ns.</p>
+        <div class="row">
+          <a class="btn-line invert" href="#" onclick="return false">In&nbsp;progress</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="proj" data-tag="research" style="--bg:url('images/CALLeeg.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">EEG, signal processing</p>
+        <h3 class="title">Close-Ear&nbsp;EEG</h3>
+        <p class="desc">Cognitive engagement sensing for remote copresence — a close‑ear EEG system bringing engagement awareness into video calls. Submitted for review.</p>
+        <div class="row"><a class="btn-line invert" href="#" onclick="return false">In&nbsp;review</a></div>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="proj" data-tag="research" style="--bg:url('images/eit.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">EIT, machine learning</p>
+        <h3 class="title">EIT&nbsp;Gesture&nbsp;Sensing</h3>
+        <p class="desc">Wrist‑worn electrical impedance tomography with a four‑electrode array for real‑time micro‑gesture classification — custom firmware, DAQ, ML.</p>
+        <div class="row"><a class="btn-line invert" href="#" onclick="return false">In&nbsp;progress</a></div>
+      </div>
+    </article>
+
+    <!-- 4 -->
+    <article class="proj" data-tag="hw" style="--bg:url('images/drone_2.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">SpeedyBee, ArduPilot, RPi</p>
+        <h3 class="title">Autonomous&nbsp;Drone</h3>
+        <p class="desc">Custom F405 flight stack with a Raspberry Pi vision module: onboard CV for perception, MAVLink for fully autonomous navigation and gesture control.</p>
+        <div class="row"><a class="btn-line invert" href="#" onclick="return false">In&nbsp;progress</a></div>
+      </div>
+    </article>
+
+    <!-- 5 -->
+    <article class="proj" data-tag="hw" style="--bg:url('images/cart.jpg')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">Embedded, retail tech</p>
+        <h3 class="title">Carte&nbsp;Diem</h3>
+        <p class="desc">A modular smart‑cart add‑on that eliminates checkout lines while preserving anti‑theft features. Drops into existing store ecosystems.</p>
+        <div class="row">
+          <a class="btn-line invert" href="https://github.com/felixlu4725/Carte-Diem" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn-line invert" href="https://youtu.be/uMk5K5QZvuk?si=cSmXB7p1vbv0kMNO" target="_blank" rel="noopener noreferrer">Demo</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="proj" data-tag="hw research" style="--bg:url('images/Sartorious-Figure-1.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">Sponsored, NDA</p>
+        <h3 class="title">Incucyte&nbsp;Prototype</h3>
+        <p class="desc">Redesigning the Sartorius Incucyte into a miniaturized live‑cell imaging platform with custom thermal/humidity/airflow regulation in a compact form.</p>
+        <div class="row">
+          <a class="btn-line invert" href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-25" target="_blank" rel="noopener noreferrer">Brief</a>
+          <a class="btn-line invert" href="https://www.sartorius.com/en/products/live-cell-imaging-analysis" target="_blank" rel="noopener noreferrer">Product</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="proj" data-tag="hw" style="--bg:url('images/touchscreen.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">LiDAR + vibration</p>
+        <h3 class="title">Any-Surface&nbsp;Touch</h3>
+        <p class="desc">Turn any flat surface into a touchscreen — LiDAR position tracking fused with vibration classification of taps, drags and gestures in real time.</p>
+        <div class="row"><a class="btn-line invert" href="https://github.com/felixlu4725/Any-Surface-Touchscreen" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 8 -->
+    <article class="proj" data-tag="sw research" style="--bg:url('images/evaluator.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">CV, accepted to HCII 2026</p>
+        <h3 class="title">Evaluator&nbsp;App</h3>
+        <p class="desc">Real‑time hand tracking + gesture classification for musicians, using MediaPipe, YOLOv8 and DeepLabCut. Paper accepted to HCII 2026.</p>
+        <div class="row">
+          <a class="btn-line invert" href="https://github.com/felixlu4725/Evaluator-code" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn-line invert" href="https://arxiv.org/abs/2604.17530" target="_blank" rel="noopener noreferrer">Paper</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9 -->
+    <article class="proj" data-tag="sw" style="--bg:url('images/image.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">C++, seam carving</p>
+        <h3 class="title">Content-Aware&nbsp;Resize</h3>
+        <p class="desc">Seam‑carving image resizer in C++ — scales images without distorting meaningful landmarks. Optimized for large inputs.</p>
+        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/Y1owJuhfAQKD/Content-Aware-Image-Resizer/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 10 -->
+    <article class="proj" data-tag="sw" style="--bg:url('images/post.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">C++, Naïve Bayes</p>
+        <h3 class="title">Post&nbsp;Classifier</h3>
+        <p class="desc">Natural language processor in C++ for predictive classification using the Naïve Bayes algorithm. 87% accuracy on large CSV datasets with O(n) processing.</p>
+        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/WbC7jqVWQgNN/Post-classifier-using-Machine-Learning/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 11 -->
+    <article class="proj" data-tag="sw" style="--bg:url('images/queue.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">C++, RESTful server</p>
+        <h3 class="title">Office&nbsp;Hours&nbsp;Queue</h3>
+        <p class="desc">RESTful web server backed by a custom doubly‑linked list in C++ — dynamic memory, iterators, and real‑time client/server communication for an interactive OH queue.</p>
+        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/WjzkhPkvTbNq/web-queue-api/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="proj-foot">And many more to come!</div>
+</section>
+
+<!-- ─── Education ─── -->
+<section class="edu" id="education">
+  <div class="section-head">
+    <span class="h-rect">Education</span>
+    <div class="sep" role="presentation"></div>
+  </div>
+
+  <div class="edu-strips">
+    <!-- CMU -->
+    <section class="strip strip-cmu">
+      <div class="strip-mark-wrap" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="mark-text"><img src="images/cmu-wordmark-square-w-on-r.png" alt="" /></div>
+      </div>
+      <div class="container">
+        <div class="strip-meta">Incoming · M.S. Electrical &amp; Computer Engineering</div>
+        <h2>Currently @ CMU</h2>
+        <p>
+          Incoming M.S. in Electrical &amp; Computer Engineering at Carnegie Mellon University,
+          concentrating in digital chip design — RTL, microarchitecture, and physical design.
+        </p>
+      </div>
+    </section>
+
+    <!-- UMich -->
+    <section class="strip strip-umich">
+      <div class="strip-mark-wrap" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="mark-text"><img src="images/Michigan-Engineering Vertical-REV-BLUE-RGB.png" alt="" /></div>
+      </div>
+      <div class="container">
+        <div class="strip-meta">2022 — 2026 · B.S.E. Computer Engineering</div>
+        <h2>Previously @ UMich</h2>
+        <p>
+          B.S.E. in Computer Engineering at the University of Michigan — Ann Arbor, with focus on
+          sensor fusion, real‑time signal processing, and custom FPGA / microcontroller interfaces.
+          Ran HCI research at the
+          <a href="https://sixlab-eecs.com/" target="_blank" rel="noreferrer">SIX Lab</a> under
+          <a href="https://www.junyizhu.com/" target="_blank" rel="noreferrer">Dr. Junyi Zhu</a>
+          on close‑ear EEG and electrical impedance tomography for gesture sensing.
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ─── Contact ─── -->
+<section class="contact" id="contact">
+  <div class="section-head">
+    <span class="h-rect">Contact</span>
+    <p>
+      Open to research collaborations, embedded / FPGA roles, and interesting engineering problems.
+    </p>
+    <div class="sep" role="presentation"></div>
+  </div>
+
+  <div class="contact-socials">
+    <a class="contact-soc" href="https://www.linkedin.com/in/felix-lu-71a597233/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.3 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.37 1.6-2.37 3.27V21h-4V9Z"/></svg>
+      <span>LinkedIn</span>
+    </a>
+    <a class="contact-soc" href="https://github.com/felixlu4725?tab=repositories" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.55v-2.02c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.3-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.18-3.1-.12-.3-.51-1.49.11-3.1 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.61.24 2.8.11 3.1.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.18c0 .31.21.66.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+  <div class="contact-email"><a href="mailto:felixlu4725@gmail.com">felixlu4725@gmail.com</a></div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <a class="top" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">
+    <svg viewBox="0 0 24 24"><polyline points="6 14 12 8 18 14"/></svg>
+    Back to top
+  </a>
+  <div class="socials">
+    <a class="soc" href="mailto:felixlu4725@gmail.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.4-.5 7.6 5.6L19.6 6H4.4Zm15.6 1.7-7.4 5.45a1 1 0 0 1-1.2 0L4 7.7v9.8c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.7Z"/></svg>
+    </a>
+    <a class="soc" href="https://github.com/felixlu4725?tab=repositories" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.55v-2.02c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.3-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.18-3.1-.12-.3-.51-1.49.11-3.1 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.61.24 2.8.11 3.1.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14v3.18c0 .31.21.66.8.55A11.5 11.5 0 0 0 12 .5Z"/></svg>
+    </a>
+    <a class="soc" href="https://www.linkedin.com/in/felix-lu-71a597233/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.3 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.38-2.06-3.38-2.06 0-2.37 1.6-2.37 3.27V21h-4V9Z"/></svg>
+    </a>
+  </div>
+  <div class="copyright">© 2026 Felix Lu — All rights reserved.</div>
+</footer>
+
+<script>
+  // Show the dark top-nav once we've scrolled past the hero
+  const topnav = document.getElementById('topnav');
+  const hero = document.querySelector('.hero');
+  function onScroll(){
+    const threshold = hero.getBoundingClientRect().bottom;
+    if(threshold < 30) topnav.classList.add('show');
+    else topnav.classList.remove('show');
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Smooth scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if(id.length > 1){
+        const el = document.querySelector(id);
+        if(el){
+          e.preventDefault();
+          const y = el.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({top:y, behavior:'smooth'});
+        }
+      }
+    });
+  });
+
+  // Portfolio filter
+  document.querySelectorAll('.filter button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter li').forEach(li => li.classList.remove('active'));
+      btn.parentElement.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.proj').forEach(p => {
+        const tags = (p.dataset.tag || '').split(/\s+/);
+        p.style.display = (f === 'all' || tags.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
 </html>
-
-
