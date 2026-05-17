@@ -475,6 +475,87 @@
     font-size:11px;letter-spacing:.1em;color:#8b8b8b;
   }
 
+  /* UMich strip meta list (GPA / Honors / Activities) */
+  .umich-meta{
+    display:grid;grid-template-columns:140px 1fr;
+    gap:14px 28px;
+    margin:28px 0 0 0;padding:0;
+    max-width:760px;
+  }
+  .umich-meta dt{
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:11px;
+    letter-spacing:.22em;text-transform:uppercase;color:#FFCB05;
+    margin:0;padding-top:3px;
+  }
+  .umich-meta dd{
+    margin:0;
+    font-family:"Open Sans",sans-serif;font-size:14px;line-height:1.55;color:#fff;
+  }
+  @media (max-width: 700px){
+    .umich-meta{grid-template-columns:1fr;gap:4px 0}
+    .umich-meta dt{padding-top:14px}
+    .umich-meta dt:first-of-type{padding-top:0}
+  }
+
+  /* ───────── Courses (expandable disclosure inside the UMich strip) ───────── */
+  .courses-disclosure{
+    margin-top:28px;width:100%;max-width:1100px;
+  }
+  .courses-disclosure summary{
+    list-style:none;cursor:pointer;
+    display:inline-flex;align-items:center;gap:12px;
+    padding:10px 22px 10px 22px;
+    border:2px solid rgba(255,255,255,.55);
+    color:#fff;background:transparent;
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.18em;text-transform:uppercase;
+    transition:background .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .courses-disclosure summary::-webkit-details-marker{display:none}
+  .courses-disclosure summary::marker{content:""}
+  .courses-disclosure summary:hover{
+    background:#FFCB05;border-color:#FFCB05;color:#00274C;     /* Maize on Navy */
+  }
+  .courses-disclosure summary .chev{
+    width:14px;height:14px;
+    transition:transform .25s ease;
+  }
+  .courses-disclosure[open] summary .chev{transform:rotate(180deg)}
+  .courses-disclosure .courses-grid{
+    margin-top:24px;
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;
+    animation:cgFadeIn .3s ease;
+  }
+  @keyframes cgFadeIn{
+    from{opacity:0;transform:translateY(-4px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .courses-disclosure .course-card{
+    background:rgba(255,255,255,.08);
+    border-left:4px solid #FFCB05;                              /* Michigan maize */
+    padding:16px 18px;
+    display:flex;flex-direction:column;gap:4px;
+    box-shadow:none;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .courses-disclosure .course-card:hover{
+    background:rgba(255,255,255,.16);transform:translateY(-1px);
+  }
+  .courses-disclosure .course-card .code{
+    font-family:"Montserrat",sans-serif;font-weight:700;font-size:10px;
+    letter-spacing:.22em;text-transform:uppercase;color:#FFCB05;
+  }
+  .courses-disclosure .course-card .title{
+    font-family:"Montserrat",sans-serif;font-weight:600;font-size:13px;
+    line-height:1.35;color:#fff;
+  }
+  @media (max-width: 980px){
+    .courses-disclosure .courses-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width: 560px){
+    .courses-disclosure .courses-grid{grid-template-columns:1fr}
+  }
+
   /* ───────── Contact ───────── */
   .contact{
     padding:120px 0;background:radial-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.06) 100%), #fff;
@@ -587,6 +668,7 @@
   <a href="#about">About me</a>
   <a href="#skills">Skills</a>
   <a href="#portfolio">Portfolio</a>
+  <a href="#education">Education</a>
   <a href="#contact" class="pill">Contact me</a>
 </nav>
 
@@ -598,6 +680,7 @@
     <a href="#about">About me</a>
     <a href="#skills">Skills</a>
     <a href="#portfolio">Portfolio</a>
+    <a href="#education">Education</a>
     <a href="#contact" class="pill" style="background:#fff;color:#000;border-color:#fff">Contact me</a>
   </nav>
 
@@ -936,13 +1019,42 @@
           <a href="https://www.junyizhu.com/" target="_blank" rel="noreferrer">Dr. Junyi Zhu</a>
           on close‑ear EEG and electrical impedance tomography for gesture sensing.
         </p>
+        <dl class="umich-meta">
+          <dt>GPA</dt>
+          <dd>3.9 / 4.0</dd>
+          <dt>Honors</dt>
+          <dd>Summa Cum Laude · Dean's List 2022 – 2026 · University Honors · James B. Angell Scholar</dd>
+        </dl>
+        <details class="courses-disclosure">
+          <summary>
+            <span class="label">Relevant Courses</span>
+            <svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><polyline points="3 6 8 11 13 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </summary>
+          <div class="courses-grid">
+            <div class="course-card"><div class="code">EECS 473</div><div class="title">Advanced Embedded Systems</div></div>
+            <div class="course-card"><div class="code">EECS 470</div><div class="title">Computer Architecture</div></div>
+            <div class="course-card"><div class="code">EECS 460</div><div class="title">Control Systems Analysis &amp; Design</div></div>
+            <div class="course-card"><div class="code">EECS 442</div><div class="title">Computer Vision</div></div>
+            <div class="course-card"><div class="code">STATS 412</div><div class="title">Probability &amp; Statistics</div></div>
+            <div class="course-card"><div class="code">EECS 373</div><div class="title">Embedded System Design</div></div>
+            <div class="course-card"><div class="code">EECS 370</div><div class="title">Computer Organization</div></div>
+            <div class="course-card"><div class="code">EECS 312</div><div class="title">Digital Integrated Circuits</div></div>
+            <div class="course-card"><div class="code">EECS 281</div><div class="title">Data Structures &amp; Algorithms</div></div>
+            <div class="course-card"><div class="code">EECS 270</div><div class="title">Logic Design</div></div>
+            <div class="course-card"><div class="code">EECS 216</div><div class="title">Signals &amp; Systems</div></div>
+            <div class="course-card"><div class="code">MATH 216</div><div class="title">Differential Equations</div></div>
+            <div class="course-card"><div class="code">EECS 215</div><div class="title">Electrical Circuits</div></div>
+            <div class="course-card"><div class="code">MATH 215</div><div class="title">Multivariable Calculus</div></div>
+            <div class="course-card"><div class="code">EECS 203</div><div class="title">Discrete Math</div></div>
+          </div>
+        </details>
       </div>
     </section>
   </div>
 </section>
 
 <!-- ─── Contact ─── -->
-<section class="contact" id="contact" data-screen-label="06 Contact">
+<section class="contact" id="contact" data-screen-label="07 Contact">
   <div class="section-head">
     <span class="h-rect">Contact</span>
     <p>
