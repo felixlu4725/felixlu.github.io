@@ -687,7 +687,7 @@
   <div class="hero-copy">
     <p class="hero-greet">Hi, I am</p>
     <h1 class="hero-name">Felix&nbsp;Lu</h1>
-    <p class="hero-role">Computer Engineer / Embedded&nbsp;Systems</p>
+    <p class="hero-role">Computer Engineer</p>
     <div class="hero-socials">
       <a class="soc" href="mailto:felixlu4725@gmail.com" aria-label="Email">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.4-.5 7.6 5.6L19.6 6H4.4Zm15.6 1.7-7.4 5.45a1 1 0 0 1-1.2 0L4 7.7v9.8c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.7Z"/></svg>
@@ -715,8 +715,7 @@
   <div class="section-head">
     <span class="h-rect">About me</span>
     <p>
-      I build at the seam between hardware and software — embedded systems, computer vision and digital
-      design. I like projects that need a soldering iron, a scope, and a debugger in the same afternoon.
+      I build at the seam between hardware and software — embedded ML & systems, Human-Computer interaction, computer vision and digital design. 
     </p>
     <a class="btn-line" href="https://github.com/felixlu4725?tab=repositories">Explore</a>
     <div class="sep" role="presentation"></div>
@@ -735,22 +734,22 @@
     </div>
     <div class="focus">
       <div class="focus-ico">
-        <!-- waveform / digital design -->
-        <svg viewBox="0 0 64 64"><path d="M4 44h8v-24h8v24h8v-12h8v12h8v-24h8v24h12"/><path d="M4 56h56" stroke-dasharray="2 4"/></svg>
-      </div>
-      <div>
-        <h3>Digital&nbsp;Design</h3>
-        <p>SystemVerilog from datapath to tape‑in: 2‑wide superscalar RISC pipelines, register‑forwarding, dispatch queues, timing closure and Quartus / ModelSim flows.</p>
-      </div>
-    </div>
-    <div class="focus">
-      <div class="focus-ico">
         <!-- eye / vision -->
         <svg viewBox="0 0 64 64"><path d="M4 32s10-16 28-16 28 16 28 16-10 16-28 16S4 32 4 32Z"/><circle cx="32" cy="32" r="8"/><circle cx="32" cy="32" r="2" fill="#000"/></svg>
       </div>
       <div>
         <h3>Vision&nbsp;&amp; HCI</h3>
         <p>OpenCV, MediaPipe, YOLO and DeepLabCut pipelines for gesture tracking, posture correction and cognitive‑state sensing in human‑computer interaction research.</p>
+      </div>
+    </div>
+    <div class="focus">
+      <div class="focus-ico">
+        <!-- waveform / digital design -->
+        <svg viewBox="0 0 64 64"><path d="M4 44h8v-24h8v24h8v-12h8v12h8v-24h8v24h12"/><path d="M4 56h56" stroke-dasharray="2 4"/></svg>
+      </div>
+      <div>
+        <h3>Digital&nbsp;Design</h3>
+        <p>SystemVerilog from datapath to tape‑in: 2‑wide superscalar RISC pipelines, register‑forwarding, dispatch queues, timing closure and Quartus / ModelSim flows.</p>
       </div>
     </div>
   </div>
@@ -828,15 +827,16 @@
 
   <div class="portfolio-grid" id="portfolio-grid">
     <!-- 1 -->
-    <article class="proj" data-tag="hw" style="--bg:url('images/cpu_combined_cropped.png')">
+    <article class="proj" data-tag="sw research" style="--bg:url('images/evaluator.png')">
       <div class="scrim"></div>
       <div class="img"></div>
       <div class="veil">
-        <p class="kicker">SystemVerilog, FPGA</p>
-        <h3 class="title">Superscalar&nbsp;RISC&nbsp;CPU</h3>
-        <p class="desc">2‑wide superscalar LC2K processor with circular micro‑op dispatch, full register forwarding, dual‑slot hazard detection. Closed at 10.6 ns.</p>
+        <p class="kicker">CV, accepted to HCII 2026</p>
+        <h3 class="title">Evaluator&nbsp;App</h3>
+        <p class="desc">Real‑time hand tracking + gesture classification for musicians, using MediaPipe, YOLOv8 and DeepLabCut. Paper accepted to HCII 2026.</p>
         <div class="row">
-          <a class="btn-line invert" href="#" onclick="return false">In&nbsp;progress</a>
+          <a class="btn-line invert" href="https://github.com/felixlu4725/Evaluator-code">GitHub</a>
+          <a class="btn-line invert" href="https://arxiv.org/abs/2604.17530">Paper</a>
         </div>
       </div>
     </article>
@@ -878,6 +878,42 @@
     </article>
 
     <!-- 5 -->
+    <article class="proj" data-tag="sw" style="--bg:url('images/post.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">C++, Naïve Bayes</p>
+        <h3 class="title">Post&nbsp;Classifier</h3>
+        <p class="desc">Natural language processor in C++ for predictive classification using the Naïve Bayes algorithm. 87% accuracy on large CSV datasets with O(n) processing.</p>
+        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/WbC7jqVWQgNN/Post-classifier-using-Machine-Learning/">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 6 -->
+    <article class="proj" data-tag="sw" style="--bg:url('images/image.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">C++, seam carving</p>
+        <h3 class="title">Content-Aware&nbsp;Resize</h3>
+        <p class="desc">Seam‑carving image resizer in C++ — scales images without distorting meaningful landmarks. Optimized for large inputs.</p>
+        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/Y1owJuhfAQKD/Content-Aware-Image-Resizer/">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 7 -->
+    <article class="proj" data-tag="sw" style="--bg:url('images/queue.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">C++, RESTful server</p>
+        <h3 class="title">Office&nbsp;Hours&nbsp;Queue</h3>
+        <p class="desc">RESTful web server backed by a custom doubly‑linked list in C++ — dynamic memory, iterators, and real‑time client/server communication for an interactive OH queue.</p>
+        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/WjzkhPkvTbNq/web-queue-api/">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 8 -->
     <article class="proj" data-tag="hw" style="--bg:url('images/cart.jpg')">
       <div class="scrim"></div>
       <div class="img"></div>
@@ -892,7 +928,19 @@
       </div>
     </article>
 
-    <!-- 6 -->
+    <!-- 9 -->
+    <article class="proj" data-tag="hw" style="--bg:url('images/touchscreen.png')">
+      <div class="scrim"></div>
+      <div class="img"></div>
+      <div class="veil">
+        <p class="kicker">LiDAR + vibration</p>
+        <h3 class="title">Any-Surface&nbsp;Touch</h3>
+        <p class="desc">Turn any flat surface into a touchscreen — LiDAR position tracking fused with vibration classification of taps, drags and gestures in real time.</p>
+        <div class="row"><a class="btn-line invert" href="https://github.com/felixlu4725/Any-Surface-Touchscreen">GitHub</a></div>
+      </div>
+    </article>
+
+    <!-- 10 -->
     <article class="proj" data-tag="hw research" style="--bg:url('images/Sartorious-Figure-1.png')">
       <div class="scrim"></div>
       <div class="img"></div>
@@ -907,66 +955,17 @@
       </div>
     </article>
 
-    <!-- 7 -->
-    <article class="proj" data-tag="hw" style="--bg:url('images/touchscreen.png')">
-      <div class="scrim"></div>
-      <div class="img"></div>
-      <div class="veil">
-        <p class="kicker">LiDAR + vibration</p>
-        <h3 class="title">Any-Surface&nbsp;Touch</h3>
-        <p class="desc">Turn any flat surface into a touchscreen — LiDAR position tracking fused with vibration classification of taps, drags and gestures in real time.</p>
-        <div class="row"><a class="btn-line invert" href="https://github.com/felixlu4725/Any-Surface-Touchscreen">GitHub</a></div>
-      </div>
-    </article>
-
-    <!-- 8 -->
-    <article class="proj" data-tag="sw research" style="--bg:url('images/evaluator.png')">
-      <div class="scrim"></div>
-      <div class="img"></div>
-      <div class="veil">
-        <p class="kicker">CV, accepted to HCII 2026</p>
-        <h3 class="title">Evaluator&nbsp;App</h3>
-        <p class="desc">Real‑time hand tracking + gesture classification for musicians, using MediaPipe, YOLOv8 and DeepLabCut. Paper accepted to HCII 2026.</p>
-        <div class="row">
-          <a class="btn-line invert" href="https://github.com/felixlu4725/Evaluator-code">GitHub</a>
-          <a class="btn-line invert" href="https://arxiv.org/abs/2604.17530">Paper</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- 9 -->
-    <article class="proj" data-tag="sw" style="--bg:url('images/image.png')">
-      <div class="scrim"></div>
-      <div class="img"></div>
-      <div class="veil">
-        <p class="kicker">C++, seam carving</p>
-        <h3 class="title">Content-Aware&nbsp;Resize</h3>
-        <p class="desc">Seam‑carving image resizer in C++ — scales images without distorting meaningful landmarks. Optimized for large inputs.</p>
-        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/Y1owJuhfAQKD/Content-Aware-Image-Resizer/">GitHub</a></div>
-      </div>
-    </article>
-
-    <!-- 10 -->
-    <article class="proj" data-tag="sw" style="--bg:url('images/post.png')">
-      <div class="scrim"></div>
-      <div class="img"></div>
-      <div class="veil">
-        <p class="kicker">C++, Naïve Bayes</p>
-        <h3 class="title">Post&nbsp;Classifier</h3>
-        <p class="desc">Natural language processor in C++ for predictive classification using the Naïve Bayes algorithm. 87% accuracy on large CSV datasets with O(n) processing.</p>
-        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/WbC7jqVWQgNN/Post-classifier-using-Machine-Learning/">GitHub</a></div>
-      </div>
-    </article>
-
     <!-- 11 -->
-    <article class="proj" data-tag="sw" style="--bg:url('images/queue.png')">
+    <article class="proj" data-tag="hw" style="--bg:url('images/cpu_combined_cropped.png')">
       <div class="scrim"></div>
       <div class="img"></div>
       <div class="veil">
-        <p class="kicker">C++, RESTful server</p>
-        <h3 class="title">Office&nbsp;Hours&nbsp;Queue</h3>
-        <p class="desc">RESTful web server backed by a custom doubly‑linked list in C++ — dynamic memory, iterators, and real‑time client/server communication for an interactive OH queue.</p>
-        <div class="row"><a class="btn-line invert" href="https://gitfront.io/r/felixlu/WjzkhPkvTbNq/web-queue-api/">GitHub</a></div>
+        <p class="kicker">SystemVerilog, FPGA</p>
+        <h3 class="title">Superscalar&nbsp;RISC&nbsp;CPU</h3>
+        <p class="desc">2‑wide superscalar LC2K processor with circular micro‑op dispatch, full register forwarding, dual‑slot hazard detection. Closed at 10.6 ns.</p>
+        <div class="row">
+          <a class="btn-line invert" href="#" onclick="return false">In&nbsp;progress</a>
+        </div>
       </div>
     </article>
   </div>
@@ -994,8 +993,7 @@
         <div class="strip-meta">Incoming · M.S. Electrical &amp; Computer Engineering</div>
         <h2>Currently @ CMU</h2>
         <p>
-          Incoming M.S. in Electrical &amp; Computer Engineering at Carnegie Mellon University,
-          concentrating in digital chip design — RTL, microarchitecture, and physical design.
+          Incoming M.S. in Electrical &amp; Computer Engineering at Carnegie Mellon University with concetration in ML and HCI.
         </p>
       </div>
     </section>
